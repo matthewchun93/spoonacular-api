@@ -19,7 +19,9 @@ const Vegetarian = () => {
     } else {
       const api = await fetch(
         `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`
-      );
+      ).catch((err) => {
+        console.log(err);
+      });
       const data = await api.json();
       localStorage.setItem("vegetarian", JSON.stringify(data.recipes));
       console.log(data);
@@ -30,7 +32,7 @@ const Vegetarian = () => {
   return (
     <div>
       <Wrapper>
-        <h3>Veggetarian Picks</h3>
+        <h3>Vegetarian Picks</h3>
 
         <Splide
           options={{
